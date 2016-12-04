@@ -13,7 +13,7 @@ export default class Sidebar extends Component {
     render() {
         return (
             <Content style={styles.sidebar} >
-                <List foregroundColor={'white'}>
+                <List>
                     <ListItem button onPress={() => this.navigateTo('index')} >
                         <Text>Index</Text>
                     </ListItem>

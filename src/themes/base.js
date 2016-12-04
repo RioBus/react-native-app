@@ -2,6 +2,7 @@ import { Platform } from 'react-native';
 import Color from 'color';
 
 export default {
+
     brandPrimary : "#428bca",
     brandInfo: "#5bc0de",
     brandSuccess: "#5cb85c",
@@ -9,11 +10,43 @@ export default {
     brandWarning: "#f0ad4e",
     brandSidebar: "#252932",
 
-    inverseTextColor: "#fff",
-    textColor: "#000",
-
+    badgeColor: "#fff",
+    badgeBg: "#ED1727",
+    borderRadiusBase: 4,
+    borderWidth: 1,
+    btnDisabledBg: '#b5b5b5',
+    btnDisabledClr: '#f1f1f1',
+    btnLineHeight: (Platform.OS==='ios') ? 20 : 23,
+    cardDefaultBg: "#fff",
+    contentPadding: 10,
+    defaultProgressColor: "#E4202D",
+    defaultSpinnerColor: "#45D56E",
+    dropdownBg: "#000",
+    dropdownLinkColor: "#414142",
     fontSizeBase: 15,
+    footerHeight: 55,
+    iconFontSize: 32,
+    inputBorderColor: "#000",
+    inputHeightBase: 40,
+    inputGroupMarginBottom: 10,
+    inputPaddingLeft: 5,
+    inverseTextColor: "#fff",
+    inverseSpinnerColor: "#1A191B",
+    inverseProgressColor: "#1A191B",
+    jumbotronBg: "#C9C9CE",
+    jumbotronPadding: 30,
+    listBorderColor: "#ddd",
+    listDividerBg: "#F5F5F5",
+    lineHeight: (Platform.OS==='ios') ? 21 : 25,
+    listItemPadding: 15,
+    listNoteColor: "#58575C",
+    tabBgColor: "#00c497",
+    tabTextColor: "#fff",
+    textColor: "#000",
     titleFontSize: 17,
+    toolbarDefaultBg: "#4286f4",
+    toolbarHeight: (Platform.OS === 'ios' ) ? 70 : 55,
+    toolbarInverseBg: "#222",
 
     get fontSizeH1 () {
         return this.fontSizeBase*1.8;
@@ -39,29 +72,12 @@ export default {
     get iconSizeSmall () {
         return this.iconFontSize* .6;
     },
-
-    borderRadiusBase: 4,
-
     get borderRadiusLarge () {
         return this.fontSizeBase* 3.8;
     },
-
-    footerHeight: 55,
-    toolbarHeight: (Platform.OS === 'ios' ) ? 70 : 55,
-    toolbarDefaultBg: "#00c497",
-    toolbarInverseBg: "#222",
-
-        tabBgColor: "#00c497",
-        tabTextColor: "#fff",
-
-        btnDisabledBg: '#b5b5b5',
-    btnDisabledClr: '#f1f1f1',
-
-        cardDefaultBg: "#fff",
-
-        get darkenHeader() {
-            return Color(this.tabBgColor).darken(0.03).hexString();
-        },
+    get darkenHeader() {
+        return Color(this.tabBgColor).darken(0.03).hexString();
+    },
     get btnPrimaryBg () {
         return this.brandPrimary;
     },
@@ -92,48 +108,14 @@ export default {
     get btnWarningColor () {
         return this.inverseTextColor;
     },
-
-    borderWidth: 1,
-
     get inputColor () {
         return this.textColor;
     },
     get inputColorPlaceholder () {
         return 'rgba(0, 0, 0, 0.7)';
     },
-    inputBorderColor: "#000",
-    inputHeightBase: 40,
-    inputGroupMarginBottom: 10,
-    inputPaddingLeft: 5,
     get inputPaddingLeftIcon () {
         return this.inputPaddingLeft* 8;
     },
 
-    btnLineHeight: (Platform.OS==='ios') ? 20 : 23,
-
-    dropdownBg: "#000",
-    dropdownLinkColor: "#414142",
-
-    jumbotronPadding: 30,
-    jumbotronBg: "#C9C9CE",
-
-    contentPadding: 10,
-
-    listBorderColor: "#ddd",
-    listDividerBg: "#F5F5F5",
-    listItemPadding: 15,
-    listNoteColor: "#58575C",
-
-    iconFontSize: 32,
-
-    badgeColor: "#fff",
-    badgeBg: "#ED1727",
-
-    lineHeight: (Platform.OS==='ios') ? 21 : 25,
-
-    defaultSpinnerColor: "#45D56E",
-    inverseSpinnerColor: "#1A191B",
-
-    defaultProgressColor: "#E4202D",
-    inverseProgressColor: "#1A191B"
 };
