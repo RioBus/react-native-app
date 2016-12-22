@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Text, Title, Button, Icon } from 'native-base';
+import { Container, Header, Content, Text, Title, Button, Icon, Footer, FooterTab } from 'native-base';
 import theme from '../themes/base';
 
 export default class Home extends Component {
@@ -14,12 +14,16 @@ export default class Home extends Component {
                     <Title>React Native</Title>
                 </Header>
             	<Content>
-            		<Text>Hello world!</Text>
-                    <Button primary iconRight onPress={() => this.props.pushRoute('second')}>
-                        <Text>Next</Text>
-                        <Icon name='ios-arrow-forward' />
-                    </Button>
+                    <Text style={{textAlign:'center'}}>Hello world!</Text>
             	</Content>
+                <Footer>
+                    <FooterTab>
+                        <Button onPress={() => this.props.pushRoute('second')}>
+                            <Text>Next</Text>
+                            <Icon name='md-arrow-forward' />
+                        </Button>
+                    </FooterTab>
+                </Footer>
             </Container>
         );
     }
