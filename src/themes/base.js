@@ -9,6 +9,15 @@ export default {
     brandDanger: "#d9534f",
     brandWarning: "#f0ad4e",
     brandSidebar: "#252932",
+    
+    statusBarStyle: "light-content",
+    get statusBarColor() { return Color(this.toolbarDefaultBg).darken(0.2).hexString() },
+
+    titleFontSize: 17,
+    toolbarDefaultBg: "#EEEEEE",
+    toolbarHeight: (Platform.OS === 'ios' ) ? 70 : 55,
+    toolbarInverseBg: "#222",
+
 
     badgeColor: "#fff",
     badgeBg: "#ED1727",
@@ -43,10 +52,6 @@ export default {
     tabBgColor: "#00c497",
     tabTextColor: "#fff",
     textColor: "#000",
-    titleFontSize: 17,
-    toolbarDefaultBg: "#4286f4",
-    toolbarHeight: (Platform.OS === 'ios' ) ? 70 : 55,
-    toolbarInverseBg: "#222",
 
     get fontSizeH1 () {
         return this.fontSizeBase*1.8;

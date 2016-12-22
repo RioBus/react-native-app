@@ -9,6 +9,7 @@
     "ios": "react-native run-ios"
   },
   "dependencies": {
+    "color": "1.0.3",
     "native-base": "0.5.18",
     "react": "15.4.1",
     "react-native": "0.39.2",

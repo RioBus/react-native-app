@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import { closeDrawer, replaceOrPushRoute, setIndex } from '../actions/index';
+import { closeDrawer, setIndex, replaceRoute } from '../actions/index';
 import Sidebar from './sidebar';
 
 function bindAction(dispatch) {
     return {
         closeDrawer: () => dispatch(closeDrawer()),
-        replaceOrPushRoute: route => dispatch(replaceOrPushRoute(route)),
+        replaceRoute: route => dispatch(replaceRoute(route)),
         setIndex: index => dispatch(setIndex(index))
     }
 }

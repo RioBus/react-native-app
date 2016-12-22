@@ -4,9 +4,9 @@ import { Drawer } from 'native-base';
 import { BackAndroid, Platform, StatusBar } from 'react-native';
 import { closeDrawer, popRoute } from './actions/index';
 import Navigator from 'Navigator';
-import router from './router';
+import { DEFAULT_ROUTE, router } from './router';
 import Sidebar from './sidebar/index';
-import { statusBarColor } from "./themes/base";
+import { statusBarColor, statusBarStyle } from "./themes/base";
 
 export var globalNav = {};
 
@@ -32,8 +32,6 @@ Navigator.prototype.replaceWithAnimation = function (route) {
   });
 };
 
-const searchResultRegexp = /^search\/(.*)$/;
-
 const reducerCreate = params => {
     const defaultReducer = Reducer(params);
     return (state, action) => {
@@ -49,7 +47,6 @@ const reducerCreate = params => {
     }
 };
 
-const drawerStyle  = { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3};
 class AppNavigator extends Component {
     constructor(props){
         super(props);
@@ -70,7 +67,7 @@ class AppNavigator extends Component {
         BackAndroid.addEventListener('hardwareBackPress', () => {
             var routes = this._navigator.getCurrentRoutes();
 
-            if(routes[routes.length - 1].id == 'home' || routes[routes.length - 1].id == 'login') {
+            if(routes[routes.length - 1].id == DEFAULT_ROUTE || routes[routes.length - 1].id == 'login') {
                 // CLose the app
                 return false;
             }
@@ -111,7 +108,7 @@ class AppNavigator extends Component {
                 negotiatePan={true}>
                 <StatusBar
                     backgroundColor={statusBarColor}
-                    barStyle="light-content"
+                    barStyle={statusBarStyle}
                 />
                 <Navigator
                     ref={(ref) => this._navigator = ref}

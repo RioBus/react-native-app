@@ -1,7 +1,7 @@
 import React, { Component } from 'React';
-import App from './app';
-import configureStore from './configure/store';
 import { Provider } from 'react-redux';
+import configureStore from './configure/store';
+import App from './app';
 
 export default class Root extends Component {
 

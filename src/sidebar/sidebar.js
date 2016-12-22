@@ -7,7 +7,7 @@ export default class Sidebar extends Component {
     navigateTo(route) {
         this.props.closeDrawer();
         this.props.setIndex(undefined);
-        this.props.replaceOrPushRoute(route);
+        this.props.replaceRoute(route);
     }
 
     render() {
@@ -17,8 +17,8 @@ export default class Sidebar extends Component {
                     <ListItem button onPress={() => this.navigateTo('home')} >
                         <Text>Home</Text>
                     </ListItem>
-                    <ListItem button onPress={() => this.navigateTo('second')} >
-                        <Text>Second Page</Text>
+                    <ListItem button onPress={() => this.navigateTo('third')} >
+                        <Text>Third Page</Text>
                     </ListItem>
                 </List>
             </Content>
