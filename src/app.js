@@ -115,9 +115,8 @@ class AppNavigator extends Component {
                 />
                 <Navigator
                     ref={(ref) => this._navigator = ref}
-                    configureScene={(route) => {
-                        return Navigator.SceneConfigs.FloatFromRight;
-                    }}
+                    configureScene={(route) => (Platform.OS === 'ios') ?
+                        Navigator.SceneConfigs.PushFromRight : Navigator.SceneConfigs.FloatFromBottomAndroid}
                     initialRoute={{id: (Platform.OS === "android") ? 'splashscreen' : 'index', statusBarHidden: true}}
                     renderScene={this.renderScene}
                   />
