@@ -8,8 +8,8 @@ export default class Second extends Component {
         return (
             <Container theme={theme}>
                 <Header>
-                    <Button transparent>
-                        <Icon name='md-menu' onPress={this.props.openDrawer}/>
+                    <Button transparent onPress={this.props.popRoute}>
+                        <Icon name='md-arrow-back' />
                     </Button>
                     <Title>Second page</Title>
                 </Header>
