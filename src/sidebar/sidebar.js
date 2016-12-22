@@ -6,7 +6,6 @@ export default class Sidebar extends Component {
 
     navigateTo(route) {
         this.props.closeDrawer();
-        this.props.setIndex(undefined);
         this.props.replaceRoute(route);
     }
 

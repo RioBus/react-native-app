@@ -1,36 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { BackAndroid, Platform, StatusBar, Navigator } from 'react-native';
 import { connect } from 'react-redux';
 import { Drawer } from 'native-base';
-import { BackAndroid, Platform, StatusBar } from 'react-native';
 import { closeDrawer, popRoute } from './actions/index';
-import Navigator from 'Navigator';
 import { DEFAULT_ROUTE, router } from './router';
 import Sidebar from './sidebar/index';
 import { statusBarColor, statusBarStyle } from "./themes/base";
 
 export var globalNav = {};
-
-Navigator.prototype.replaceWithAnimation = function (route) {
-  const activeLength = this.state.presentedIndex + 1;
-  const activeStack = this.state.routeStack.slice(0, activeLength);
-  const activeAnimationConfigStack = this.state.sceneConfigStack.slice(0, activeLength);
-  const nextStack = activeStack.concat([route]);
-  const destIndex = nextStack.length - 1;
-  const nextSceneConfig = this.props.configureScene(route, nextStack);
-  const nextAnimationConfigStack = activeAnimationConfigStack.concat([nextSceneConfig]);
-
-  const replacedStack = activeStack.slice(0, activeLength - 1).concat([route]);
-  this._emitWillFocus(nextStack[destIndex]);
-  this.setState({
-    routeStack: nextStack,
-    sceneConfigStack: nextAnimationConfigStack,
-  }, () => {
-    this._enableScene(destIndex);
-    this._transitionTo(destIndex, nextSceneConfig.defaultTransitionVelocity, null, () => {
-      this.immediatelyResetRouteStack(replacedStack);
-    });
-  });
-};
 
 const reducerCreate = params => {
     const defaultReducer = Reducer(params);
@@ -65,17 +42,12 @@ class AppNavigator extends Component {
         });
 
         BackAndroid.addEventListener('hardwareBackPress', () => {
-            var routes = this._navigator.getCurrentRoutes();
-
-            if(routes[routes.length - 1].id == DEFAULT_ROUTE || routes[routes.length - 1].id == 'login') {
-                // CLose the app
-                return false;
-            }
-            else {
+            if (this._navigator && this._navigator.getCurrentRoutes().length > 1) {
                 this.popRoute();
                 return true;
             }
-
+            // Closes the app
+            return false;
         });
     }
 
@@ -114,7 +86,7 @@ class AppNavigator extends Component {
                     ref={(ref) => this._navigator = ref}
                     configureScene={(route) => (Platform.OS === 'ios') ?
                         Navigator.SceneConfigs.PushFromRight : Navigator.SceneConfigs.FloatFromBottomAndroid}
-                    initialRoute={{id: (Platform.OS === "android") ? 'splashscreen' : 'index', statusBarHidden: true}}
+                    initialRoute={{id: DEFAULT_ROUTE, statusBarHidden: true}}
                     renderScene={this.renderScene}
                   />
             </Drawer>
