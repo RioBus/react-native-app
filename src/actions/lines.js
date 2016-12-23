@@ -13,10 +13,6 @@ export function downloadLines() {
     return (dispatch) => {
         request.then(({data}) => dispatch({type: DOWNLOAD_LINES, payload: data}));
     };
-    // return {
-    //     type: DOWNLOAD_LINES,
-    //     payload: request
-    // };
 }
 
 export function loadLines() {
