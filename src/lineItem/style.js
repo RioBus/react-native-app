@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     title: {
         fontWeight: 'bold',
-        fontSize: 16
+        fontSize: 16,
+        color: '#000'
     },
     description: {
         fontSize: 14,
