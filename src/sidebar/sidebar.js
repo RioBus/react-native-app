@@ -13,7 +13,7 @@ export default class Sidebar extends Component {
         return (
             <Content style={styles.sidebar} >
                 <List>
-                    <ListItem button onPress={() => this.navigateTo('home')} >
+                    <ListItem button onPress={() => this.navigateTo('search')} >
                         <Text>Home</Text>
                     </ListItem>
                     <ListItem button onPress={() => this.navigateTo('third')} >

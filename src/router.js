@@ -1,9 +1,9 @@
 import React from 'react';
-import Home from './home';
+import Search from './search';
 import Second from './second';
 import Third from './third';
 
-export const DEFAULT_ROUTE = 'home';
+export const DEFAULT_ROUTE = 'search';
 
 export const router = (id, navigator) => {
     switch (id) {
@@ -13,8 +13,8 @@ export const router = (id, navigator) => {
         case 'third':
             return <Third navigator={navigator} />;
 
-        case 'home':
+        case 'search':
         default :
-            return <Home navigator={navigator} />;
+            return <Search navigator={navigator} />;
     }
 };
