@@ -3,7 +3,7 @@ function warn(error) {
   throw error; // To let the caller handle the rejection
 }
 
-export default store => next => action =>
+export default () => next => action =>
   typeof action.then === 'function'
     ? Promise.resolve(action).then(next, warn)
     : next(action);

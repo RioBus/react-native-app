@@ -6,35 +6,20 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  // console.log(action, "UGH(W&G(GD(&GD(G&");
-  if (action.type === OPEN_DRAWER) {
-    return {
-      ...state,
-      drawerState: 'opened'
-    };
-  }
+  switch (action.type) {
+    
+    case OPEN_DRAWER:
+      return { ...state, drawerState: 'opened' };
+    
+    case CLOSE_DRAWER:
+      return { ...state, drawerState: 'closed' };
+    
+    case ENABLE_DRAWER:
+      return { ...state, drawerDisabled: false };
 
-  if (action.type === CLOSE_DRAWER) {
-    return {
-      ...state,
-      drawerState: 'closed'
-    };
-  }
+    case DISABLE_DRAWER:
+      return { ...state, drawerDisabled: true };
 
-  if (action.type === ENABLE_DRAWER) {
-    // console.log("enable drawer (*&*)*)()");
-    return {
-      ...state,
-      drawerDisabled: false
-    };
+    default: return state;
   }
-
-  if (action.type === DISABLE_DRAWER) {
-    return {
-      ...state,
-      drawerDisabled: true
-    };
-  }
-
-  return state;
-}
+};
