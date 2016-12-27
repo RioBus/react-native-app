@@ -27,7 +27,7 @@ class Sidebar extends Component {
     }
 }
 
-function bindAction(dispatch) {
+function mapActionsToProps(dispatch) {
     return {
         closeDrawer: () => dispatch(closeDrawer()),
         replaceRoute: route => dispatch(replaceRoute(route)),
@@ -35,4 +35,4 @@ function bindAction(dispatch) {
     };
 }
 
-export default connect(null, bindAction)(Sidebar);
+export default connect(null, mapActionsToProps)(Sidebar);

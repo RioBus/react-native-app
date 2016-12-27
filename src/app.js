@@ -44,6 +44,10 @@ class AppNavigator extends Component {
         }
     }
 
+    renderScene(route, navigator) {
+        return router(route.id, navigator);
+    }
+
     render() {
         return (
             <Drawer
@@ -73,13 +77,9 @@ class AppNavigator extends Component {
             </Drawer>
         );
     }
-
-    renderScene(route, navigator) {
-        return router(route.id, navigator);
-    }
 }
 
-function bindAction(dispatch) {
+function mapActionsToProps(dispatch) {
     return {
         closeDrawer: () => dispatch(closeDrawer()),
         popRoute: () => dispatch(popRoute())
@@ -92,4 +92,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, bindAction)(AppNavigator);
+export default connect(mapStateToProps, mapActionsToProps)(AppNavigator);

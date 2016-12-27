@@ -37,11 +37,11 @@ class Home extends Component {
 }
 
 
-function bindActions(dispatch) {
+function mapActionsToProps(dispatch) {
     return {
         openDrawer: () => dispatch(openDrawer()),
         pushRoute: route => dispatch(pushNewRoute(route)),
     };
 }
 
-export default connect(null, bindActions)(Home);
+export default connect(null, mapActionsToProps)(Home);

@@ -24,11 +24,11 @@ class Second extends Component {
 }
 
 
-function bindActions(dispatch) {
+function MapActionsToProps(dispatch) {
     return {
         openDrawer: () => dispatch(openDrawer()),
         popRoute: () => dispatch(popRoute())
     };
 }
 
-export default connect(null, bindActions)(Second);
+export default connect(null, MapActionsToProps)(Second);

@@ -23,10 +23,10 @@ class Third extends Component {
     }
 }
 
-function bindActions(dispatch) {
+function mapActionsToProps(dispatch) {
     return {
         openDrawer: () => dispatch(openDrawer())
     };
 }
 
-export default connect(null, bindActions)(Third);
+export default connect(null, mapActionsToProps)(Third);
