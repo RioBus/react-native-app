@@ -11,7 +11,7 @@ export function downloadLines() {
         return [];
     });
     return (dispatch) => {
-        request.then(({data}) => dispatch({type: DOWNLOAD_LINES, payload: data}));
+        request.then(({ data }) => dispatch({ type: DOWNLOAD_LINES, payload: data }));
     };
 }
 
