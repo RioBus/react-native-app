@@ -1,5 +1,5 @@
 {
-  "name": "RNSeed",
+  "name": "RioBus",
   "version": "1.0.0",
   "scripts": {
     "postinstall": "react-native upgrade && react-native link",
