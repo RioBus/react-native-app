@@ -13,11 +13,13 @@ const Style = {
         color: '#999'
     },
     star: {
-        fontSize: 24,
+        fontSize: 28,
         color: '#FFD700'
     },
     rightCol: {
-        width: 20
+        width: 20,
+        marginLeft: 10,
+        paddingVertical: 10
     }
 };
 
@@ -28,7 +30,7 @@ export default props => (
                 <Text style={Style.title}>{props.line.line}</Text>
                 <Text style={Style.description}>{props.line.description}</Text>
             </Col>
-            <Col style={{ width: 20, marginLeft: 10, paddingVertical: 10 }}>
+            <Col style={Style.rightCol}>
                 <Icon name='ios-star-outline' style={Style.star} />
             </Col>
         </Grid>
