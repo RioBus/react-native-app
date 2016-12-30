@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Drawer } from 'native-base';
 import { closeDrawer, popRoute } from './actions';
 import { DEFAULT_ROUTE, router } from './router';
-import { statusBarColor, statusBarStyle } from './themes';
+import { statusBarColor, statusBarStyle } from './theme';
 import { Sidebar } from './pages';
 
 export const globalNav = {};

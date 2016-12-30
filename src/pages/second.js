@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Text, Title, Button, Icon } from 'native-base';
 import { connect } from 'react-redux';
 import { openDrawer, popRoute } from '../actions';
-import theme from '../themes';
+import theme from '../theme';
 
 class Second extends Component {
 

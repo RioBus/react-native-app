@@ -3,7 +3,7 @@ import Color from 'color';
 
 export default {
 
-    brandPrimary: '#428bca',
+    brandPrimary: '#5067FF',
     brandInfo: '#5bc0de',
     brandSuccess: '#5cb85c',
     brandDanger: '#d9534f',
@@ -14,9 +14,11 @@ export default {
     get statusBarColor() { return Color(this.toolbarDefaultBg).darken(0.2).hexString(); },
 
     titleFontSize: 17,
-    toolbarDefaultBg: '#EEEEEE',
+    toolbarDefaultBg: '#4ea7f5',
     toolbarHeight: (Platform.OS === 'ios') ? 70 : 55,
+    toolbarIconSize: (Platform.OS === 'ios') ? 20 : 22,
     toolbarInverseBg: '#222',
+    toolbarTextColor: '#fff',
 
 
     badgeColor: '#fff',
