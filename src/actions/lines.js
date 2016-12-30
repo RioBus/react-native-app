@@ -10,6 +10,7 @@ export function downloadLines() {
         console.warn(error);
         return [];
     });
+    // return { type: DOWNLOAD_LINES, payload: request };
     return (dispatch) => {
         request.then(({ data }) => dispatch({ type: DOWNLOAD_LINES, payload: data }));
     };
