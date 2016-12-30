@@ -17,8 +17,8 @@ const Style = {
         color: '#FFD700'
     },
     rightCol: {
-        width: 20,
-        marginLeft: 10,
+        width: 28,
+        marginHorizontal: 10,
         paddingVertical: 10
     }
 };
