@@ -19,7 +19,7 @@ export default {
     titleFontSize: 17,
     titleFontColor: '#FFFFFF',
     toolbarDefaultBg: '#4ea7f5',
-    toolbarBorderColor: '#CCCCCC',
+    toolbarBorderColor: '#DDD',
     toolbarHeight: (Platform.OS === 'ios') ? 70 : 55,
     toolbarIconSize: (Platform.OS === 'ios') ? 20 : 22,
     toolbarInverseBg: '#222',

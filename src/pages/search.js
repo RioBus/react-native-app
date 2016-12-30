@@ -50,11 +50,13 @@ class Search extends React.Component {
     }
 
     renderContent() {
-        if (this.props.lines.length === 0) return (
-            <View style={this.style.loadingContainer}>
-                <ActivityIndicator size="large" style={this.style.loadingIndicator} />
-            </View>
-        );
+        if (this.props.lines.length === 0) {
+            return (
+                <View style={this.style.loadingContainer}>
+                    <ActivityIndicator size="large" style={this.style.loadingIndicator} />
+                </View>
+            );
+        }
 
         return (
             <ListView

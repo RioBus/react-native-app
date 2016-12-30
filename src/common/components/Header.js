@@ -61,16 +61,10 @@ export default class Header extends React.Component {
         );
     }
 
-    get ToolbarStyle() {
-        let style = Style.toolbar;
-        if (Platform.OS === 'ios') delete style.height;
-        return style;
-    }
-
     getTitle(element) {
         if (element instanceof Array) {
-            element = element.find(element => element.type.name === 'Title');
-            return element;
+            const elem = element.find(el => el.type.name === 'Title');
+            return elem;
         } else if (element.type.name === 'Title') {
             return element;
         }
@@ -78,24 +72,31 @@ export default class Header extends React.Component {
 
     getRightButton(element) {
         if (element instanceof Array) {
-            element = element.find(element => element.type.name === 'RightButton');
-            return element;
+            const elem = element.find(el => el.type.name === 'RightButton');
+            return elem;
         } else if (element.type.name === 'RightButton') {
             return element;
-        } else return { title: '' };
+        }
+        return { title: '' };
     }
 
     getLeftButton(element) {
         if (element instanceof Array) {
-            element = element.find(element => element.type.name === 'LeftButton');
-            return element;
+            const elem = element.find(el => el.type.name === 'LeftButton');
+            return elem;
         } else if (element.type.name === 'LeftButton') {
             return element;
-        } else return { title: '' };
+        }
+        return { title: '' };
+    }
+
+    get ToolbarStyle() {
+        const style = Style.toolbar;
+        if (Platform.OS === 'ios') delete style.height;
+        return style;
     }
 
     render() {
-
         return (
             <View style={Style.shadow}>
                 <NavigationBar
