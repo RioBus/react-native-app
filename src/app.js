@@ -1,95 +1,41 @@
-import React, { Component } from 'react';
-import { BackAndroid, Platform, StatusBar, Navigator } from 'react-native';
-import { connect } from 'react-redux';
-import { Drawer } from 'native-base';
-import { closeDrawer, popRoute } from './actions';
-import { DEFAULT_ROUTE, router } from './router';
-import { statusBarColor, statusBarStyle } from './themes';
-import Sidebar from './sidebar';
+import React from 'react';
+import { Navigator, Platform, BackAndroid } from 'react-native';
+import { Provider } from 'react-redux';
+import configureStore from './store';
+import router from './router';
 
-export const globalNav = {};
-
-class AppNavigator extends Component {
+export default class App extends React.Component {
 
     componentDidMount() {
-        globalNav.navigator = this.navigator;
-
-        this.props.store.subscribe(() => {
-            if (this.props.store.getState().drawer.drawerState === 'opened') this.openDrawer();
-            if (this.props.store.getState().drawer.drawerState === 'closed') this.drawer.close();
-        });
-
         BackAndroid.addEventListener('hardwareBackPress', () => {
             if (this.navigator && this.navigator.getCurrentRoutes().length > 1) {
-                this.popRoute();
+                this.navigator.pop();
                 return true;
             }
-            // Closes the app
             return false;
         });
     }
 
-    popRoute() {
-        this.props.popRoute();
-    }
-
-    openDrawer() {
-        this.drawer.open();
-    }
-
-    closeDrawer() {
-        if (this.props.store.getState().drawer.drawerState === 'opened') {
-            this.drawer.close();
-            this.props.closeDrawer();
-        }
-    }
-
     renderScene(route, navigator) {
-        return router(route.id, navigator);
+        return router(route, navigator);
     }
 
     render() {
+        const store = configureStore();
         return (
-            <Drawer
-                ref={ref => { this.drawer = ref; }}
-                type="overlay"
-                content={<Sidebar navigator={this.navigator} />}
-                tapToClose={true}
-                acceptPan={false}
-                onClose={() => this.closeDrawer()}
-                openDrawerOffset={0.2}
-                panCloseMask={0.2}
-                negotiatePan={true}
-            >
-                <StatusBar
-                    backgroundColor={statusBarColor}
-                    barStyle={statusBarStyle}
-                />
+            <Provider store={store}>
                 <Navigator
+                    store={store}
                     ref={ref => { this.navigator = ref; }}
+                    initialRoute={{}}
+                    renderScene={this.renderScene}
                     configureScene={() => (Platform.OS === 'ios') ?
                         Navigator.SceneConfigs.PushFromRight :
                         Navigator.SceneConfigs.FloatFromBottomAndroid
                     }
-                    initialRoute={{ id: DEFAULT_ROUTE, statusBarHidden: true }}
-                    renderScene={this.renderScene}
                 />
-            </Drawer>
+            </Provider>
         );
     }
+
 }
-
-function mapActionsToProps(dispatch) {
-    return {
-        closeDrawer: () => dispatch(closeDrawer()),
-        popRoute: () => dispatch(popRoute())
-    };
-}
-
-const mapStateToProps = state => {
-    return {
-        drawerState: state.drawer.drawerState
-    };
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(AppNavigator);

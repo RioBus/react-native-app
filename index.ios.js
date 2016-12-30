@@ -1,5 +1,4 @@
 import { AppRegistry } from 'react-native';
-import Root from './src/root';
-import { APP_NAME } from './src/const';
+import App from './src/App';
 
-AppRegistry.registerComponent(APP_NAME, () => Root);
+AppRegistry.registerComponent('RNSeed', () => App);
