@@ -1,36 +1,45 @@
 import React from 'react';
-import NavigationBar from 'react-native-navbar';
 import { View, Text, TouchableHighlight, Platform } from 'react-native';
 import Theme from '../../theme';
 
 const Style = {
     toolbar: {
         height: Theme.toolbarHeight,
-        backgroundColor: Theme.toolbarDefaultBg
+        backgroundColor: Theme.statusBarColor,
+    },
+    toolbarContainer: {
+        backgroundColor: Theme.toolbarDefaultBg,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        height: (Theme.toolbarHeight - 20),
+        marginTop: (Platform.OS === 'ios') ? 20 : 0,
+        borderBottomWidth: 1,
+        borderColor: Theme.toolbarBorderColor
     },
     toolbarButton: {
-        alignSelf: 'center',
-        marginHorizontal: 15
+        marginVertical: 12,
+        flex: 1,
+        alignItems: 'center'
     },
     toolbarTitle: {
+        marginTop: 12,
         fontSize: Theme.titleFontSize,
-        color: Theme.titleFontColor
+        color: Theme.titleFontColor,
+        textAlign: (Platform.OS === 'ios') ? 'center' : 'left'
     },
     toolbarTitleContainer: {
-        marginVertical: 5
-    },
-    shadow: {
-        borderBottomColor: Theme.toolbarBorderColor,
-        borderBottomWidth: 1
+        flex: 8
     }
 };
 
 export default class Header extends React.Component {
 
-    static Title({ children }) {
+    static Title(props) {
         return (
             <View style={Style.toolbarTitleContainer}>
-                <Text style={Style.toolbarTitle}>{children}</Text>
+                <Text style={Style.toolbarTitle}>{props.children}</Text>
             </View>
         );
     }
@@ -61,54 +70,26 @@ export default class Header extends React.Component {
         );
     }
 
-    get ToolbarStyle() {
-        let style = Style.toolbar;
-        if (Platform.OS === 'ios') delete style.height;
-        return style;
-    }
-
-    getTitle(element) {
-        if (element instanceof Array) {
-            element = element.find(element => element.type.name === 'Title');
-            return element;
-        } else if (element.type.name === 'Title') {
-            return element;
-        }
-    }
-
-    getRightButton(element) {
-        if (element instanceof Array) {
-            element = element.find(element => element.type.name === 'RightButton');
-            return element;
-        } else if (element.type.name === 'RightButton') {
-            return element;
-        } else return { title: '' };
-    }
-
-    getLeftButton(element) {
-        if (element instanceof Array) {
-            element = element.find(element => element.type.name === 'LeftButton');
-            return element;
-        } else if (element.type.name === 'LeftButton') {
-            return element;
-        } else return { title: '' };
+    getElement(identifier, elements) {
+        return (elements.length > 0) ?
+            elements.find(el => el && el.type.name === identifier) : null;
     }
 
     render() {
-
+        const children = [].concat(this.props.children);
         return (
-            <View style={Style.shadow}>
-                <NavigationBar
-                    title={this.getTitle(this.props.children)}
-                    tintColor={Style.toolbar.backgroundColor}
-                    leftButton={this.getLeftButton(this.props.children)}
-                    rightButton={this.getRightButton(this.props.children)}
-                    statusBar={{
-                        style: Theme.statusBarStyle,
-                        tintColor: Theme.statusBarColor
-                    }}
-                    style={this.ToolbarStyle}
-                />
+            <View style={Style.toolbar}>
+                <View style={Style.toolbarContainer}>
+                    <View style={{ flex: 1 }}>
+                        {this.getElement('LeftButton', children)}
+                    </View>
+                    <View style={{ flex: 8 }}>
+                        {this.getElement('Title', children)}
+                    </View>
+                    <View style={{ flex: 1 }}>
+                        {this.getElement('RightButton', children)}
+                    </View>
+                </View>
             </View>
         );
     }

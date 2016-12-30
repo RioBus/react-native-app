@@ -15,9 +15,9 @@ function getSize(size) {
     }
 } 
 
-export default ({name, size, color}) => {
+export default ({ name, size, color }) => {
     name = (Platform.OS === 'ios') ? `ios-${name}` : `md-${name}`;
-    size = getSize(size)
+    size = getSize(size);
     color = color || '#000';
     return <Ionicon name={name} size={size} color={color} />;
 };
