@@ -1,7 +1,5 @@
 import React from 'react';
-import Search from './search';
-import Second from './second';
-import Third from './third';
+import { Search, Second, Third } from './pages';
 
 export const DEFAULT_ROUTE = 'search';
 

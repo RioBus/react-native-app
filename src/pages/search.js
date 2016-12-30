@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import { openDrawer, pushNewRoute, downloadLines } from '../actions';
 import theme from '../themes/base';
-import LineItem from '../lineItem';
+import { LineItem } from '../components';
 
 class Search extends Component {
 
