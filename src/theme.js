@@ -10,11 +10,16 @@ export default {
     brandWarning: '#f0ad4e',
     brandSidebar: '#252932',
     
-    statusBarStyle: 'light-content',
-    get statusBarColor() { return Color(this.toolbarDefaultBg).darken(0.2).hexString(); },
+    statusBarStyle: 'default',
+    get statusBarColor() {
+        return (Platform.OS === 'ios') ?
+            this.toolbarDefaultBg : Color(this.toolbarDefaultBg).darken(0.2).hex();
+    },
 
     titleFontSize: 17,
+    titleFontColor: '#000',
     toolbarDefaultBg: '#4ea7f5',
+    toolbarBorderColor: '#CCCCCC',
     toolbarHeight: (Platform.OS === 'ios') ? 70 : 55,
     toolbarIconSize: (Platform.OS === 'ios') ? 20 : 22,
     toolbarInverseBg: '#222',
@@ -36,7 +41,7 @@ export default {
     dropdownLinkColor: '#414142',
     fontSizeBase: 15,
     footerHeight: 55,
-    iconFontSize: 32,
+    iconFontSize: 24,
     inputBorderColor: '#000',
     inputHeightBase: 40,
     inputGroupMarginBottom: 10,
@@ -83,7 +88,7 @@ export default {
         return this.fontSizeBase * 3.8;
     },
     get darkenHeader() {
-        return Color(this.tabBgColor).darken(0.03).hexString();
+        return Color(this.tabBgColor).darken(0.03).hex();
     },
     get btnPrimaryBg() {
         return this.brandPrimary;
