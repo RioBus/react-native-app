@@ -10,25 +10,27 @@ class Search extends React.Component {
 
     state = { toggleSearch: false, text: '' };
 
-    style = {
-        loadingContainer: {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center'
-        },
-        loadingIndicator: {
-            alignSelf: 'center',
-            margin: 10
-        }
-    };
-
     componentWillMount() {
         this.props.downloadLines();
     }
 
+    get style() {
+        return {
+            loadingContainer: {
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center'
+            },
+            loadingIndicator: {
+                alignSelf: 'center',
+                margin: 10
+            }
+        };
+    }
+
     get dataSource() {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.id !== r2.id });
-        return ds.cloneWithRows(this.props.lines.slice(0, 10));
+        return ds.cloneWithRows(this.props.lines);
     }
 
     renderHeader() {
