@@ -17,7 +17,7 @@ const Style = {
         color: Theme.titleFontColor
     },
     toolbarTitleContainer: {
-        marginVertical: 5
+        marginVertical: (Platform.OS === 'ios') ? 5 : 10
     },
     shadow: {
         borderBottomColor: Theme.toolbarBorderColor,
