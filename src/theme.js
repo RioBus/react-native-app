@@ -10,14 +10,14 @@ export default {
     brandWarning: '#f0ad4e',
     brandSidebar: '#252932',
     
-    statusBarStyle: 'default',
+    statusBarStyle: 'light-content',
     get statusBarColor() {
         return (Platform.OS === 'ios') ?
             this.toolbarDefaultBg : Color(this.toolbarDefaultBg).darken(0.2).hex();
     },
 
     titleFontSize: 17,
-    titleFontColor: '#000',
+    titleFontColor: '#FFFFFF',
     toolbarDefaultBg: '#4ea7f5',
     toolbarBorderColor: '#CCCCCC',
     toolbarHeight: (Platform.OS === 'ios') ? 70 : 55,

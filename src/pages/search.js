@@ -1,21 +1,26 @@
-import React, { Component } from 'react';
-import { ListView } from 'react-native';
-import {
-    Container, Header, Content,
-    Title, Button, Icon,
-    ListItem, Spinner, InputGroup,
-    Input
-} from 'native-base';
-
+import React from 'react';
+import { ListView, View, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
-import { openDrawer, pushNewRoute, downloadLines } from '../actions';
-import theme from '../theme';
+import { downloadLines } from '../actions';
 import { LineItem } from '../components';
+import { Header, Icon } from '../common';
 
-class Search extends Component {
+class Search extends React.Component {
 
     state = { toggleSearch: false, text: '' };
+
+    style = {
+        loadingContainer: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        loadingIndicator: {
+            alignSelf: 'center',
+            margin: 10
+        }
+    };
 
     componentWillMount() {
         this.props.downloadLines();
@@ -23,44 +28,34 @@ class Search extends Component {
 
     get dataSource() {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.id !== r2.id });
-        return ds.cloneWithRows(this.props.lines);
+        return ds.cloneWithRows(this.props.lines.slice(0, 10));
     }
 
     renderHeader() {
-        if (this.state.toggleSearch) {
-            return (
-                <Header searchBar rounded>
-                    <InputGroup>
-                        <Icon name="ios-search" />
-                        <Input placeholder="Search" />
-                        <Icon name="ios-close" onPress={() => this.setState({ toggleSearch: false, text: '' })} />
-                    </InputGroup>
-                    <Button transparent>
-                        Search
-                    </Button>
-                </Header>
-            );
-        }
-
         return (
             <Header>
-                <Button transparent>
-                    <Icon name='md-menu' onPress={this.props.openDrawer} />
-                </Button>
-                <Title>Rio Bus</Title>
-                <Button transparent onPress={() => this.setState({ toggleSearch: true })}>
-                    <Icon name='md-search' />
-                </Button>
+                <Header.LeftButton>
+                    <Icon name='menu' color="#FFFFFF" />
+                </Header.LeftButton>
+                <Header.Title>Rio Bus</Header.Title>
+                <Header.RightButton onPress={() => this.setState({ toggleSearch: true })}>
+                    <Icon name='search' color="#FFFFFF" />
+                </Header.RightButton>
             </Header>
         );
     }
 
     renderRow(line) {
-        return <ListItem key={line.line}><LineItem line={line} /></ListItem>;
+        return <LineItem key={line.line} line={line} />;
     }
 
     renderContent() {
-        if (this.props.lines.length === 0) return <Spinner color="blue" />;
+        if (this.props.lines.length === 0) return (
+            <View style={this.style.loadingContainer}>
+                <ActivityIndicator size="large" style={this.style.loadingIndicator} />
+            </View>
+        );
+
         return (
             <ListView
                 dataSource={this.dataSource}
@@ -73,21 +68,16 @@ class Search extends Component {
 
     render() {
         return (
-            <Container theme={theme}>
+            <View style={{ flex: 1 }}>
                 {this.renderHeader()}
-
-                <Content>
-                    {this.renderContent()}
-                </Content>
-            </Container>
+                {this.renderContent()}
+            </View>
         );
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        openDrawer: () => dispatch(openDrawer()),
-        pushRoute: route => dispatch(pushNewRoute(route)),
         downloadLines: () => dispatch(downloadLines())
     };
 }

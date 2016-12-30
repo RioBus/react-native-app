@@ -3,6 +3,7 @@ import { Search, Second } from './pages';
 
 export default (routeId, navigator) => {
     switch (routeId) {
+        
         default :
         case 'search': return <Search navigator={navigator} />;
 

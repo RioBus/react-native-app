@@ -1,38 +1,47 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Icon, Grid, Col } from 'native-base';
+import { Icon } from '../common';
 
 const Style = {
-    title: {
-        fontWeight: 'bold',
-        fontSize: 16,
-        color: '#000'
+
+    title: { fontWeight: 'bold', fontSize: 16, color: '#000' },
+
+    description: { fontSize: 14, color: '#999' },
+
+    star: { fontSize: 28, color: '#FFD700' },
+
+    grid: {
+        flex: 1,
+        flexDirection: 'row',
+        borderBottomColor: '#DDD',
+        borderBottomWidth: 1
     },
-    description: {
-        fontSize: 14,
-        color: '#999'
+
+    leftCol: {
+        marginHorizontal: 10,
+        paddingVertical: 10,
+        justifyContent: 'center',
+        flex: 9
     },
-    star: {
-        fontSize: 28,
-        color: '#FFD700'
-    },
+
     rightCol: {
         width: 28,
+        alignItems: 'center',
+        justifyContent: 'center',
         marginHorizontal: 10,
-        paddingVertical: 10
+        paddingVertical: 10,
+        flex: 1
     }
 };
 
 export default props => (
-    <View>
-        <Grid>
-            <Col>
-                <Text style={Style.title}>{props.line.line}</Text>
-                <Text style={Style.description}>{props.line.description}</Text>
-            </Col>
-            <Col style={Style.rightCol}>
-                <Icon name='ios-star-outline' style={Style.star} />
-            </Col>
-        </Grid>
+    <View style={Style.grid}>
+        <View style={Style.leftCol}>
+            <Text style={Style.title}>{props.line.line}</Text>
+            <Text style={Style.description}>{props.line.description}</Text>
+        </View>
+        <View style={Style.rightCol}>
+            <Icon name='star-outline' size={Style.star.size} color={Style.star.color} />
+        </View>
     </View>
 );

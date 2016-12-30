@@ -1,3 +1,3 @@
-import LineItem from './lineItem';
+import LineItem from './LineItem';
 
 export { LineItem };
