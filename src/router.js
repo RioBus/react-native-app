@@ -1,5 +1,5 @@
 import React from 'react';
-import { AndroidSearch, IOSSearch, AndroidMap, IOSMap } from './pages';
+import { AndroidSearch, IOSSearch, Map } from './pages';
 
 export default (routeId, os, navigator) => {
     switch (routeId) {
@@ -10,7 +10,6 @@ export default (routeId, os, navigator) => {
             <AndroidSearch navigator={navigator} /> : <IOSSearch navigator={navigator} />;
 
         case 'map':
-            return (os === 'android') ?
-            <AndroidMap navigator={navigator} /> : <IOSMap navigator={navigator} />;
+            return <Map navigator={navigator} />;
     }
 };

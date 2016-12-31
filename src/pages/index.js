@@ -1,7 +1,6 @@
 import AndroidSearch from './AndroidSearch';
 import IOSSearch from './IOSSearch';
 
-import AndroidMap from './AndroidMap';
-import IOSMap from './IOSMap';
+import Map from './Map';
 
-export { AndroidSearch, IOSSearch, AndroidMap, IOSMap };
+export { AndroidSearch, IOSSearch, Map };
