@@ -24,10 +24,15 @@ const Style = {
         height: (Platform.OS === 'ios') ? (Theme.toolbarHeight - 20) : Theme.toolbarHeight,
         marginTop: (Platform.OS === 'ios') ? 20 : 0
     },
-    toolbarButton: {
-        marginVertical: 12,
+    toolbarButtonContainer: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    toolbarButton: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     toolbarTitle: {
         fontSize: Theme.titleFontSize,
