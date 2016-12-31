@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Header, Icon } from '../common';
+import { CardView, Header, Icon } from '../common';
 
 export default class Second extends React.Component {
 
@@ -10,6 +10,9 @@ export default class Second extends React.Component {
 
     get Style() {
         return {
+            card: {
+                padding: 10
+            },
             container: {
                 flex: 1,
                 justifyContent: 'center',
@@ -36,10 +39,11 @@ export default class Second extends React.Component {
                 </Header>
             
                 <View style={this.Style.container}>
-                    <Text style={this.Style.welcome}>
-                        Welcome to React Native second page! This page is presented only
-                        to iOS devices.
-                    </Text>
+                    <CardView style={this.Style.card}>
+                        <Text style={this.Style.welcome}>
+                            This page is presented only to iOS devices.
+                        </Text>
+                    </CardView>
                 </View>
             </View>
         );

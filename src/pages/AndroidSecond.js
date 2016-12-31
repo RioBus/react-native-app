@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Header } from '../common';
+import { CardView, Header } from '../common';
 
 const Style = {
+    card: {
+        padding: 10
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -32,10 +35,11 @@ export default class Second extends React.Component {
                 </Header>
             
                 <View style={Style.container}>
-                    <Text style={Style.welcome}>
-                        Welcome to React Native second page! This page has
-                        a custom header and is presented only to Android.
-                    </Text>
+                    <CardView style={Style.card}>
+                        <Text style={Style.welcome}>
+                            This page has a custom header and is presented only to Android.
+                        </Text>
+                    </CardView>
                 </View>
             </View>
         );
