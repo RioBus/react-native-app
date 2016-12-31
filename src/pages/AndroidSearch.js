@@ -110,7 +110,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     return {
-        lines: state.lines.lines
+        lines: state.lines.all
     };
 }
 

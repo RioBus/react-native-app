@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import { Header, Icon } from '../common';
-import { getSelectedLine } from '../actions';
+import { getSelectedLine, unselectLine, loadBuses } from '../actions';
 
 const Style = {
     mapContainer: {
@@ -20,7 +20,16 @@ class Map extends React.Component {
         this.props.getSelectedLine();
     }
 
+    componentDidUpdate() {
+        if (!this.props.selectedLine.line ||
+            (this.props.selectedLine.line && this.props.buses.length > 0
+                && this.props.buses[0].line === this.props.selectedLine.line)) return;
+
+        this.props.loadBuses(this.props.selectedLine.line);
+    }
+
     onPressBackButton() {
+        this.props.unselectLine();
         this.props.navigator.pop();
     }
 
@@ -40,6 +49,22 @@ class Map extends React.Component {
         );
     }
 
+    renderMarker(bus) {
+        return (
+            <MapView.Marker
+                coordinate={{ latitude: bus.latitude, longitude: bus.longitude }}
+                title={bus.line}
+                key={bus.order}
+                description={bus.order}
+            />
+        );
+    }
+
+    renderMarkers() {
+        if (!this.Title || this.props.buses.length === 0) return;
+        return this.props.buses.map(this.renderMarker);
+    }
+
     renderContent() {
         return (
             <View style={Style.mapContainer}>
@@ -51,7 +76,9 @@ class Map extends React.Component {
                         latitudeDelta: 0.1,
                         longitudeDelta: 0.1,
                     }}
-                />
+                >
+                    {this.renderMarkers()}
+                </MapView>
             </View>
         );
     }
@@ -68,13 +95,16 @@ class Map extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getSelectedLine: (query) => dispatch(getSelectedLine(query))
+        unselectLine: () => dispatch(unselectLine()),
+        getSelectedLine: (line) => dispatch(getSelectedLine(line)),
+        loadBuses: (query) => dispatch(loadBuses(query))
     };
 }
 
 function mapStateToProps(state) {
     return {
-        selectedLine: state.lines.selectedLine
+        selectedLine: state.lines.selectedLine,
+        buses: state.buses.all
     };
 }
 

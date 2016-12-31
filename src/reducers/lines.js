@@ -1,7 +1,7 @@
 import { UNSELECT_LINE, SELECTED_LINE, DOWNLOAD_LINES, LOAD_LINES } from '../actions';
 
 const initialState = {
-  lines: [],
+  all: [],
   selectedLine: {}
 };
 
@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
 
     case LOAD_LINES:
     case DOWNLOAD_LINES:
-      newState.lines = action.payload;
+      newState.all = action.payload;
       return newState;
 
     case SELECTED_LINE:
