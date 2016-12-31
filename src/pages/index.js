@@ -1,4 +1,5 @@
 import Home from './Home';
-import Second from './Second';
+import IOSSecond from './IOSSecond';
+import AndroidSecond from './AndroidSecond';
 
-export { Home, Second };
+export { Home, AndroidSecond, IOSSecond };
