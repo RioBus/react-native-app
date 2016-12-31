@@ -1,8 +1,9 @@
 import React from 'react';
-import { Navigator, Platform, BackAndroid } from 'react-native';
+import { Navigator, Platform, BackAndroid, StatusBar, View } from 'react-native';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 import router from './router';
+import Theme from './theme';
 
 export default class App extends React.Component {
 
@@ -24,16 +25,23 @@ export default class App extends React.Component {
         const store = configureStore();
         return (
             <Provider store={store}>
-                <Navigator
-                    store={store}
-                    ref={ref => { this.navigator = ref; }}
-                    initialRoute={{}}
-                    renderScene={this.renderScene}
-                    configureScene={() => (Platform.OS === 'ios') ?
-                        Navigator.SceneConfigs.PushFromRight :
-                        Navigator.SceneConfigs.FloatFromBottomAndroid
-                    }
-                />
+                <View style={{ flex: 1 }}>
+                    <StatusBar
+                        translucent={false}
+                        backgroundColor={Theme.statusBarColor}
+                        barStyle={Theme.statusBarStyle}
+                    />
+                    <Navigator
+                        store={store}
+                        ref={ref => { this.navigator = ref; }}
+                        initialRoute={{}}
+                        renderScene={this.renderScene}
+                        configureScene={() => (Platform.OS === 'ios') ?
+                            Navigator.SceneConfigs.PushFromRight :
+                            Navigator.SceneConfigs.FloatFromBottomAndroid
+                        }
+                    />
+                </View>
             </Provider>
         );
     }
