@@ -38,14 +38,10 @@ const Style = {
 
 class Search extends React.Component {
 
-    state = { toggleSearch: false, text: '' };
+    state = { text: '' };
 
     componentWillMount() {
-        // this.props.downloadLines();
-    }
-
-    onPressCloseButton() {
-        console.log('Button pressed');
+        this.props.downloadLines();
     }
 
     get dataSource() {
