@@ -1,10 +1,11 @@
 import React from 'react';
-import { ListView, View, ActivityIndicator } from 'react-native';
+import { ListView, View, ActivityIndicator, DrawerLayoutAndroid, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import { downloadLines } from '../actions';
 import { LineItem } from '../components';
 import { Header, Icon } from '../common';
+import Drawer from './Drawer';
 
 class Search extends React.Component {
 
@@ -33,10 +34,14 @@ class Search extends React.Component {
         return ds.cloneWithRows(this.props.lines);
     }
 
+    onPressMenuButton() {
+        this.drawer.openDrawer(0);
+    }
+
     renderHeader() {
         return (
             <Header>
-                <Header.LeftButton>
+                <Header.LeftButton onPress={() => this.onPressMenuButton()}>
                     <Icon name='menu' color="#FFFFFF" />
                 </Header.LeftButton>
                 <Header.Title>Rio Bus</Header.Title>
@@ -72,10 +77,17 @@ class Search extends React.Component {
 
     render() {
         return (
+            <DrawerLayoutAndroid
+                ref={ref => { this.drawer = ref; }}
+                drawerWidth={300}
+                drawerPosition={DrawerLayoutAndroid.positions.Left}
+                renderNavigationView={() => <Drawer />}
+            >
             <View style={{ flex: 1 }}>
                 {this.renderHeader()}
                 {this.renderContent()}
             </View>
+            </DrawerLayoutAndroid>
         );
     }
 }
