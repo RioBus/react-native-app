@@ -2,28 +2,26 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { CardView, Header, Icon } from '../common';
 
+const Style = {
+    card: {
+        padding: 10
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+    }
+};
+
 export default class Second extends React.Component {
 
     onPressLeftButton() {
         this.props.navigator.pop();
-    }
-
-    get Style() {
-        return {
-            card: {
-                padding: 10
-            },
-            container: {
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-            },
-            welcome: {
-                fontSize: 20,
-                textAlign: 'center',
-                margin: 10,
-            }
-        };
     }
 
     render() {
@@ -38,9 +36,9 @@ export default class Second extends React.Component {
                     </Header.Title>
                 </Header>
             
-                <View style={this.Style.container}>
-                    <CardView style={this.Style.card}>
-                        <Text style={this.Style.welcome}>
+                <View style={Style.container}>
+                    <CardView style={Style.card}>
+                        <Text style={Style.welcome}>
                             This page is presented only to iOS devices.
                         </Text>
                     </CardView>
