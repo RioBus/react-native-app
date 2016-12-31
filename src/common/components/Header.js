@@ -20,6 +20,9 @@ const Style = {
         marginTop: (Platform.OS === 'ios') ? 20 : 0
     },
     toolbarCustomContainer: {
+        flexDirection: 'row',
+        alignSelf: 'stretch',
+        alignItems: 'center',
         backgroundColor: Theme.toolbarDefaultBg,
         height: (Platform.OS === 'ios') ? (Theme.toolbarHeight - 20) : Theme.toolbarHeight,
         marginTop: (Platform.OS === 'ios') ? 20 : 0
@@ -52,7 +55,11 @@ const Style = {
 export default class Header extends React.Component {
 
     static Custom(props) {
-        return (<View style={Style.toolbarCustomContainer}>{props.children}</View>);
+        return (
+            <View style={{ ...Style.toolbarCustomContainer, ...props.style }}>
+                {props.children}
+            </View>
+        );
     }
 
     static Title(props) {
