@@ -1,3 +1,4 @@
-import Search from './Search';
+import AndroidSearch from './AndroidSearch';
+import IOSSearch from './IOSSearch';
 
-export { Search };
+export { AndroidSearch, IOSSearch };
