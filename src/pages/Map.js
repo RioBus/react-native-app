@@ -3,23 +3,30 @@ import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import { Header, Icon } from '../common';
+import { getSelectedLine } from '../actions';
 
 const Style = {
     mapContainer: {
-        ...StyleSheet.absoluteFillObject,
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
-    map: {
-        ...StyleSheet.absoluteFillObject,
-    }
+    map: { ...StyleSheet.absoluteFillObject }
 };
 
 class Map extends React.Component {
 
+    componentWillMount() {
+        this.props.getSelectedLine();
+    }
+
     onPressBackButton() {
         this.props.navigator.pop();
+    }
+
+    get Title() {
+        const { selectedLine } = this.props;
+        return (selectedLine.line) ? selectedLine.line : '';
     }
 
     renderHeader() {
@@ -28,9 +35,7 @@ class Map extends React.Component {
                 <Header.LeftButton onPress={() => this.onPressBackButton()}>
                     <Icon name="arrow-back" color="white" />
                 </Header.LeftButton>
-                <Header.Title>
-                    Map
-                </Header.Title>
+                <Header.Title>{this.Title}</Header.Title>
             </Header>
         );
     }
@@ -61,17 +66,16 @@ class Map extends React.Component {
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         downloadLines: () => dispatch(downloadLines())
-//     };
-// }
+function mapDispatchToProps(dispatch) {
+    return {
+        getSelectedLine: (query) => dispatch(getSelectedLine(query))
+    };
+}
 
-// function mapStateToProps(state) {
-//     return {
-//         lines: state.lines.lines
-//     };
-// }
+function mapStateToProps(state) {
+    return {
+        selectedLine: state.lines.selectedLine
+    };
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Map);
-export default Map;
+export default connect(mapStateToProps, mapDispatchToProps)(Map);

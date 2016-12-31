@@ -1,19 +1,28 @@
-import { FIND_LINES, DOWNLOAD_LINES, LOAD_LINES } from '../actions';
+import { UNSELECT_LINE, SELECTED_LINE, DOWNLOAD_LINES, LOAD_LINES } from '../actions';
 
 const initialState = {
-  lines: []
+  lines: [],
+  selectedLine: {}
 };
 
 export default (state = initialState, action) => {
+  const newState = { ...state };
+
   switch (action.type) {
 
     case LOAD_LINES:
-    case FIND_LINES:
     case DOWNLOAD_LINES:
-      const newState = { ...state };
       newState.lines = action.payload;
       return newState;
 
-    default: return state;
+    case SELECTED_LINE:
+      newState.selectedLine = action.payload;
+      return newState;
+
+    case UNSELECT_LINE:
+      newState.selectedLine = initialState.selectedLine;
+      return newState;
+
+    default: return newState;
   }
 };

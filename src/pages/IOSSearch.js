@@ -2,7 +2,7 @@ import React from 'react';
 import { ListView, View, ActivityIndicator, TextInput, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import { downloadLines } from '../actions';
+import { downloadLines, selectLine } from '../actions';
 import { IOSLineItem } from '../components';
 import { CardView, Header, Icon, Touchable } from '../common';
 
@@ -59,6 +59,7 @@ class Search extends React.Component {
     }
 
     onPressLine(line) {
+        this.props.selectLine(line);
         this.props.navigator.push('map');
     }
 
@@ -145,6 +146,7 @@ class Search extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
+        selectLine: (line) => dispatch(selectLine(line)),
         downloadLines: () => dispatch(downloadLines())
     };
 }
