@@ -19,6 +19,11 @@ const Style = {
         height: (Platform.OS === 'ios') ? (Theme.toolbarHeight - 20) : Theme.toolbarHeight,
         marginTop: (Platform.OS === 'ios') ? 20 : 0
     },
+    toolbarCustomContainer: {
+        backgroundColor: Theme.toolbarDefaultBg,
+        height: (Platform.OS === 'ios') ? (Theme.toolbarHeight - 20) : Theme.toolbarHeight,
+        marginTop: (Platform.OS === 'ios') ? 20 : 0
+    },
     toolbarButton: {
         marginVertical: 12,
         flex: 1,
@@ -40,6 +45,10 @@ const Style = {
 };
 
 export default class Header extends React.Component {
+
+    static Custom(props) {
+        return (<View style={Style.toolbarCustomContainer}>{props.children}</View>);
+    }
 
     static Title(props) {
         return (
@@ -80,22 +89,32 @@ export default class Header extends React.Component {
             elements.find(el => el && el.type.name === identifier) : null;
     }
 
-    render() {
+    renderContent() {
         const children = [].concat(this.props.children);
+
+        const custom = this.getElement('Custom', children);
+        if (custom) return custom;
+
+        return (
+            <View style={Style.toolbarContainer}>
+                <View style={{ flex: 1 }}>
+                    {this.getElement('LeftButton', children)}
+                </View>
+                <View style={{ flex: 8 }}>
+                    {this.getElement('Title', children)}
+                </View>
+                <View style={{ flex: 1 }}>
+                    {this.getElement('RightButton', children)}
+                </View>
+            </View>
+        );
+    }
+
+    render() {
         return (
             <View style={Style.shadow}>
                 <View style={Style.toolbar} elevation={3}>
-                    <View style={Style.toolbarContainer}>
-                        <View style={{ flex: 1 }}>
-                            {this.getElement('LeftButton', children)}
-                        </View>
-                        <View style={{ flex: 8 }}>
-                            {this.getElement('Title', children)}
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            {this.getElement('RightButton', children)}
-                        </View>
-                    </View>
+                    {this.renderContent()}
                 </View>
             </View>
         );
