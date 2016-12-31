@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListView, View, ActivityIndicator, DrawerLayoutAndroid, Text } from 'react-native';
+import { ListView, View, ActivityIndicator, DrawerLayoutAndroid } from 'react-native';
 import { connect } from 'react-redux';
 
 import { downloadLines } from '../actions';
@@ -13,6 +13,10 @@ class Search extends React.Component {
 
     componentWillMount() {
         this.props.downloadLines();
+    }
+
+    onPressMenuButton() {
+        this.drawer.openDrawer(0);
     }
 
     get style() {
@@ -32,10 +36,6 @@ class Search extends React.Component {
     get dataSource() {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.id !== r2.id });
         return ds.cloneWithRows(this.props.lines);
-    }
-
-    onPressMenuButton() {
-        this.drawer.openDrawer(0);
     }
 
     renderHeader() {
@@ -81,7 +81,9 @@ class Search extends React.Component {
                 ref={ref => { this.drawer = ref; }}
                 drawerWidth={300}
                 drawerPosition={DrawerLayoutAndroid.positions.Left}
-                renderNavigationView={() => <Drawer />}
+                renderNavigationView={
+                    () => <Drawer drawer={this.drawer} navigator={this.props.navigator} />
+                }
             >
             <View style={{ flex: 1 }}>
                 {this.renderHeader()}

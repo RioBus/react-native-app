@@ -1,3 +1,4 @@
+import DrawerItem from './DrawerItem';
 import LineItem from './LineItem';
 
-export { LineItem };
+export { DrawerItem, LineItem };
