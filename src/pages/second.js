@@ -27,17 +27,15 @@ export default class Second extends React.Component {
         return (
             <View style={{ flex: 1 }}>
                 <Header>
-                    <Header.LeftButton onPress={() => this.onPressLeftButton()}>
-                        <Icon name="arrow-back" />
-                    </Header.LeftButton>
-                    <Header.Title>
+                    <Header.Custom>
                         <Text>Second page</Text>
-                    </Header.Title>
+                    </Header.Custom>
                 </Header>
             
                 <View style={this.Style.container}>
                     <Text style={this.Style.welcome}>
-                        Welcome to React Native second page!!!!
+                        Welcome to React Native second page! This page has
+                        a custom header.
                     </Text>
                 </View>
             </View>
