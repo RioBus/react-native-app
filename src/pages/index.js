@@ -1,4 +1,5 @@
 import Search from './Search';
-import Second from './Second';
+import IOSSecond from './IOSSecond';
+import AndroidSecond from './AndroidSecond';
 
-export { Search, Second };
+export { Search, AndroidSecond, IOSSecond };
