@@ -6,6 +6,9 @@ const Style = {
     toolbar: {
         height: Theme.toolbarHeight,
         backgroundColor: Theme.statusBarColor,
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3
     },
     toolbarContainer: {
         backgroundColor: Theme.toolbarDefaultBg,
@@ -13,10 +16,8 @@ const Style = {
         justifyContent: 'space-between',
         alignSelf: 'stretch',
         alignItems: 'center',
-        height: (Theme.toolbarHeight - 20),
-        marginTop: (Platform.OS === 'ios') ? 20 : 0,
-        borderBottomWidth: 1,
-        borderColor: Theme.toolbarBorderColor
+        height: (Platform.OS === 'ios') ? (Theme.toolbarHeight - 20) : Theme.toolbarHeight,
+        marginTop: (Platform.OS === 'ios') ? 20 : 0
     },
     toolbarButton: {
         marginVertical: 12,
@@ -31,6 +32,9 @@ const Style = {
     },
     toolbarTitleContainer: {
         flex: 8
+    },
+    shadow: {
+        height: Theme.toolbarHeight + 3
     }
 };
 
@@ -78,16 +82,18 @@ export default class Header extends React.Component {
     render() {
         const children = [].concat(this.props.children);
         return (
-            <View style={Style.toolbar}>
-                <View style={Style.toolbarContainer}>
-                    <View style={{ flex: 1 }}>
-                        {this.getElement('LeftButton', children)}
-                    </View>
-                    <View style={{ flex: 8 }}>
-                        {this.getElement('Title', children)}
-                    </View>
-                    <View style={{ flex: 1 }}>
-                        {this.getElement('RightButton', children)}
+            <View style={Style.shadow}>
+                <View style={Style.toolbar} elevation={3}>
+                    <View style={Style.toolbarContainer}>
+                        <View style={{ flex: 1 }}>
+                            {this.getElement('LeftButton', children)}
+                        </View>
+                        <View style={{ flex: 8 }}>
+                            {this.getElement('Title', children)}
+                        </View>
+                        <View style={{ flex: 1 }}>
+                            {this.getElement('RightButton', children)}
+                        </View>
                     </View>
                 </View>
             </View>
