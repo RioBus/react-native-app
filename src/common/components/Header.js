@@ -25,13 +25,14 @@ const Style = {
         alignItems: 'center'
     },
     toolbarTitle: {
-        marginTop: 12,
         fontSize: Theme.titleFontSize,
         color: Theme.titleFontColor,
-        textAlign: (Platform.OS === 'ios') ? 'center' : 'left'
+        marginLeft: (Platform.OS === 'ios') ? 0 : 5
     },
     toolbarTitleContainer: {
-        flex: 8
+        flex: 8,
+        justifyContent: 'center',
+        alignItems: (Platform.OS === 'ios') ? 'center' : 'flex-start'
     },
     shadow: {
         height: Theme.toolbarHeight + 3
