@@ -38,8 +38,6 @@ npm-debug.log
 # BUCK
 buck-out/
 \.buckd/
-android/
-ios/
 *.keystore
 
 .vscode/
