@@ -1,4 +1,5 @@
 import DrawerItem from './DrawerItem';
-import LineItem from './LineItem';
+import AndroidLineItem from './AndroidLineItem';
+import IOSLineItem from './IOSLineItem';
 
-export { DrawerItem, LineItem };
+export { DrawerItem, AndroidLineItem, IOSLineItem };

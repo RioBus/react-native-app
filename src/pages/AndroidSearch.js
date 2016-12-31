@@ -3,7 +3,7 @@ import { ListView, View, ActivityIndicator, DrawerLayoutAndroid } from 'react-na
 import { connect } from 'react-redux';
 
 import { downloadLines } from '../actions';
-import { LineItem } from '../components';
+import { AndroidLineItem } from '../components';
 import { Header, Icon } from '../common';
 import Drawer from './Drawer';
 
@@ -53,7 +53,7 @@ class Search extends React.Component {
     }
 
     renderRow(line) {
-        return <LineItem key={line.line} line={line} />;
+        return <AndroidLineItem key={line.line} line={line} />;
     }
 
     renderContent() {
