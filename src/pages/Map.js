@@ -76,6 +76,10 @@ class Map extends React.Component {
                         latitudeDelta: 0.1,
                         longitudeDelta: 0.1,
                     }}
+                    showsScale={false}
+                    showsIndoors={false}
+                    toolbarEnabled={false}
+                    loadingEnabled
                 >
                     {this.renderMarkers()}
                 </MapView>
