@@ -3,8 +3,8 @@ import { ListView, View, ActivityIndicator, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 
 import { downloadLines } from '../actions';
-import { CardView, LineItem } from '../components';
-import { Header, Icon } from '../common';
+import { LineItem } from '../components';
+import { CardView, Header, Icon, Touchable } from '../common';
 
 const Style = {
     loadingContainer: {
@@ -44,13 +44,13 @@ class Search extends React.Component {
         // this.props.downloadLines();
     }
 
+    onPressCloseButton() {
+        console.log('Button pressed');
+    }
+
     get dataSource() {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.id !== r2.id });
         return ds.cloneWithRows(this.props.lines);
-    }
-
-    onPressCloseButton() {
-        console.log('Button pressed');
     }
 
     renderHeader() {
@@ -72,13 +72,14 @@ class Search extends React.Component {
                             autoCorrect={false}
                             autoFocus
                         />
-                        <Icon
-                            name="close-circle"
-                            style={Style.searchIcon}
-                            size={Style.searchIcon.size}
-                            color={Style.searchIcon.color}
-                            onPress={() => this.onPressCloseButton()}
-                        />
+                        <Touchable onPress={() => this.setState({ text: '' })}>
+                            <Icon
+                                name="close-circle"
+                                style={Style.searchIcon}
+                                size={Style.searchIcon.size}
+                                color={Style.searchIcon.color}
+                            />
+                        </Touchable>
                     </CardView>
                 </Header.Custom>
             </Header>
