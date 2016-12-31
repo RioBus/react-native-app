@@ -1,4 +1,4 @@
-package com.riobus;
+package com.tormentaLabs.riobus;
 
 import com.facebook.react.ReactActivity;
 

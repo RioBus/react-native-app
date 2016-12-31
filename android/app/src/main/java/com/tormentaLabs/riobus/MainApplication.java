@@ -1,4 +1,4 @@
-package com.riobus;
+package com.tormentaLabs.riobus;
 
 import android.app.Application;
 import android.util.Log;
