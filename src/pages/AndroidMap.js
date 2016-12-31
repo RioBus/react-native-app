@@ -7,8 +7,7 @@ import { Header, Icon } from '../common';
 const Style = {
     mapContainer: {
         ...StyleSheet.absoluteFillObject,
-        height: 400,
-        width: 400,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -42,10 +41,10 @@ class Map extends React.Component {
                 <MapView
                     style={Style.map}
                     initialRegion={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
+                        latitude: -22.9083,
+                        longitude: -43.1964,
+                        latitudeDelta: 0.1,
+                        longitudeDelta: 0.1,
                     }}
                 />
             </View>
