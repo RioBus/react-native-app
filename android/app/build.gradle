@@ -104,6 +104,15 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+
+        debug{
+            storeFile file('../debug.keystore')
+            storePassword 'riobus'
+            keyPassword 'riobus'
+            keyAlias 'riobusdebug'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
@@ -128,6 +137,7 @@ android {
 dependencies {
     compile project(':react-native-maps')
     compile project(':react-native-vector-icons')
+    compile project(':react-native-maps')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules

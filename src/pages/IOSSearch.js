@@ -1,9 +1,9 @@
 import React from 'react';
-import { ListView, View, ActivityIndicator, TextInput } from 'react-native';
+import { ListView, View, ActivityIndicator, TextInput, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import { downloadLines } from '../actions';
-import { LineItem } from '../components';
+import { IOSLineItem } from '../components';
 import { CardView, Header, Icon, Touchable } from '../common';
 
 const Style = {
@@ -33,6 +33,15 @@ const Style = {
         flex: 8,
         marginLeft: 8,
         fontSize: 16
+    },
+    rowHeader: {
+        backgroundColor: '#E9E9E9',
+        height: 25,
+        justifyContent: 'center',
+        paddingLeft: 10
+    },
+    rowHeaderText: {
+        fontWeight: 'bold'
     }
 };
 
@@ -47,6 +56,10 @@ class Search extends React.Component {
     get dataSource() {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.id !== r2.id });
         return ds.cloneWithRows(this.props.lines);
+    }
+
+    onPressLine(line) {
+        this.props.navigator.push('map');
     }
 
     renderHeader() {
@@ -82,8 +95,20 @@ class Search extends React.Component {
         );
     }
 
+    renderRowHeader(text) {
+        return (
+            <View style={Style.rowHeader}>
+                <Text style={Style.rowHeaderText}>{text}</Text>
+            </View>
+        );
+    }
+
     renderRow(line) {
-        return <LineItem key={line.line} line={line} />;
+        return (
+            <Touchable onPress={() => this.onPressLine(line)}>
+                <IOSLineItem key={line.line} line={line} />
+            </Touchable>
+        );
     }
 
     renderContent() {
@@ -96,12 +121,15 @@ class Search extends React.Component {
         }
 
         return (
-            <ListView
-                dataSource={this.dataSource}
-                renderRow={this.renderRow}
-                initialListSize={this.props.lines.length}
-                pageSize={10}
-            />
+            <View style={{ flex: 1 }}>
+                {this.renderRowHeader(`Todas as linhas (${this.props.lines.length} online)`)}
+                <ListView
+                    dataSource={this.dataSource}
+                    renderRow={this.renderRow.bind(this)}
+                    initialListSize={this.props.lines.length}
+                    pageSize={10}
+                />
+            </View>
         );
     }
 

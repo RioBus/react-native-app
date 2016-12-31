@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { downloadLines } from '../actions';
 import { AndroidLineItem } from '../components';
-import { Header, Icon } from '../common';
+import { Header, Icon, Touchable } from '../common';
 import Drawer from './Drawer';
 
 class Search extends React.Component {
@@ -17,6 +17,10 @@ class Search extends React.Component {
 
     onPressMenuButton() {
         this.drawer.openDrawer(0);
+    }
+
+    onPressLine(line) {
+        this.props.navigator.push('map');
     }
 
     get style() {
@@ -53,7 +57,11 @@ class Search extends React.Component {
     }
 
     renderRow(line) {
-        return <AndroidLineItem key={line.line} line={line} />;
+        return (
+            <Touchable onPress={() => this.onPressLine(line)}>
+                <AndroidLineItem key={line.line} line={line} />
+            </Touchable>
+        );
     }
 
     renderContent() {
@@ -68,7 +76,7 @@ class Search extends React.Component {
         return (
             <ListView
                 dataSource={this.dataSource}
-                renderRow={this.renderRow}
+                renderRow={this.renderRow.bind(this)}
                 initialListSize={this.props.lines.length}
                 pageSize={10}
             />
