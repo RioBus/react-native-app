@@ -9,24 +9,39 @@ export const SELECTED_LINE = 'SELECTED_LINE';
 
 const API_URL = 'http://rest.riob.us';
 const DB_KEY = 'line';
+const SELECTED_LINE_KEY = `${DB_KEY}:selected`;
+const ALL_LINES_KEY = `${DB_KEY}:all`;
 
-export function downloadLines() {
-    const request = axios.get(`${API_URL}/v3/itinerary`).catch(error => {
+function downloadLines() {
+    return axios.get(`${API_URL}/v3/itinerary`).catch(error => {
         console.warn(error);
         return [];
     });
-    return (dispatch) => {
-        request.then(({ data }) => dispatch({ type: DOWNLOAD_LINES, payload: data }));
-    };
 }
 
 export function loadLines() {
-    return { type: LOAD_LINES, payload: [] };
+    return dispatch => {
+        AsyncStorage.getItem(ALL_LINES_KEY).catch(error => {
+            if (error) console.warn(error);
+            return '[]';
+        }).then(data => {
+            const lines = JSON.parse(data) || [];
+            if (lines.length > 0) return dispatch({ type: LOAD_LINES, payload: lines });
+            downloadLines().then(obj => {
+                const newLines = obj.data;
+                if (newLines.length === 0) return dispatch({ type: LOAD_LINES, payload: [] });
+                AsyncStorage.setItem(ALL_LINES_KEY, JSON.stringify(newLines), error => {
+                    if (error) console.warn(error);
+                    dispatch({ type: LOAD_LINES, payload: newLines });
+                });
+            });
+        });
+    };
 }
 
 export function selectLine(line) {
     return dispatch => {
-        AsyncStorage.setItem(`${DB_KEY}:selected`, JSON.stringify(line), error => {
+        AsyncStorage.setItem(SELECTED_LINE_KEY, JSON.stringify(line), error => {
             if (error) console.warn(error);
             dispatch({ type: SELECT_LINE });
         });
@@ -35,7 +50,7 @@ export function selectLine(line) {
 
 export function getSelectedLine() {
     return dispatch => {
-        AsyncStorage.getItem(`${DB_KEY}:selected`, (error, response) => {
+        AsyncStorage.getItem(SELECTED_LINE_KEY, (error, response) => {
             if (error) console.warn(error);
             dispatch({ type: SELECTED_LINE, payload: JSON.parse(response) });
         });
@@ -44,7 +59,7 @@ export function getSelectedLine() {
 
 export function unselectLine() {
     return dispatch => {
-        AsyncStorage.removeItem(`${DB_KEY}:selected`, error => {
+        AsyncStorage.removeItem(SELECTED_LINE_KEY, error => {
             if (error) console.warn(error);
             dispatch({ type: UNSELECT_LINE });
         });

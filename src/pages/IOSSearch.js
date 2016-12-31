@@ -2,7 +2,7 @@ import React from 'react';
 import { ListView, View, ActivityIndicator, TextInput, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import { downloadLines, selectLine } from '../actions';
+import { loadLines, selectLine } from '../actions';
 import { IOSLineItem } from '../components';
 import { CardView, Header, Icon, Touchable } from '../common';
 
@@ -50,7 +50,7 @@ class Search extends React.Component {
     state = { text: '' };
 
     componentWillMount() {
-        this.props.downloadLines();
+        this.props.loadLines();
     }
 
     get dataSource() {
@@ -147,7 +147,7 @@ class Search extends React.Component {
 function mapDispatchToProps(dispatch) {
     return {
         selectLine: (line) => dispatch(selectLine(line)),
-        downloadLines: () => dispatch(downloadLines())
+        loadLines: () => dispatch(loadLines())
     };
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { ListView, View, ActivityIndicator, DrawerLayoutAndroid } from 'react-native';
 import { connect } from 'react-redux';
 
-import { downloadLines } from '../actions';
+import { loadLines, selectLine } from '../actions';
 import { AndroidLineItem } from '../components';
 import { Header, Icon, Touchable } from '../common';
 import Drawer from './Drawer';
@@ -12,7 +12,7 @@ class Search extends React.Component {
     state = { toggleSearch: false, text: '' };
 
     componentWillMount() {
-        this.props.downloadLines();
+        this.props.loadLines();
     }
 
     onPressMenuButton() {
@@ -20,6 +20,7 @@ class Search extends React.Component {
     }
 
     onPressLine(line) {
+        this.props.selectLine(line);
         this.props.navigator.push('map');
     }
 
@@ -104,7 +105,8 @@ class Search extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        downloadLines: () => dispatch(downloadLines())
+        selectLine: (line) => dispatch(selectLine(line)),
+        loadLines: () => dispatch(loadLines())
     };
 }
 
