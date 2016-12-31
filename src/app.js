@@ -18,7 +18,7 @@ export default class App extends React.Component {
     }
 
     renderScene(route, navigator) {
-        return router(`${Platform.OS}-${route}`, navigator);
+        return router(route, Platform.OS, navigator);
     }
 
     render() {
