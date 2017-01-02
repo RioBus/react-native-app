@@ -7,11 +7,9 @@ function getSize(size) {
     if ((size >>> 0) > 0) return size;
     switch (size) {
         case 'small': return Theme.iconSizeSmall;
-
-        case 'large':return Theme.iconSizeLarge;
-
-        case 'medium':
-        default: return Theme.iconFontSize;
+        default:
+        case 'medium': return Theme.iconFontSize;
+        case 'large': return Theme.iconSizeLarge;
     }
 } 
 
