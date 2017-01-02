@@ -40,7 +40,7 @@ class Map extends React.Component {
 
     renderHeader() {
         return (
-            <Header>
+            <Header noShadow>
                 <Header.LeftButton onPress={() => this.onPressBackButton()}>
                     <Icon name="arrow-back" color="white" />
                 </Header.LeftButton>
