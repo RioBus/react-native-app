@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import Theme from '../../theme';
+import Theme from '../theme';
 
 function getSize(size) {
     if ((size >>> 0) > 0) return size;
