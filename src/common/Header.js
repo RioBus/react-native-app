@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Platform } from 'react-native';
 import Touchable from './Touchable';
-import Theme from '../../theme';
+import Theme from '../theme';
 
 const Style = {
     toolbar: {

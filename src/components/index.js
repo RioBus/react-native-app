@@ -1,5 +1,5 @@
-import DrawerItem from './DrawerItem';
 import AndroidLineItem from './AndroidLineItem';
+import DrawerItem from './DrawerItem';
 import IOSLineItem from './IOSLineItem';
 
-export { DrawerItem, AndroidLineItem, IOSLineItem };
+export { AndroidLineItem, DrawerItem, IOSLineItem };
