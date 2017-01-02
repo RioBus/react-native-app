@@ -121,8 +121,8 @@ export default class Header extends React.Component {
 
     render() {
         return (
-            <View style={Style.shadow}>
-                <View style={Style.toolbar} elevation={3}>
+            <View style={this.props.noShadow ? null : Style.shadow}>
+                <View style={Style.toolbar} elevation={this.props.noShadow ? 0 : 3}>
                     {this.renderContent()}
                 </View>
             </View>
