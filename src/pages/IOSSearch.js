@@ -1,10 +1,10 @@
 import React from 'react';
-import { ListView, View, ActivityIndicator, TextInput, Text } from 'react-native';
+import { ListView, View, ActivityIndicator, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import { loadLines, selectLine } from '../actions';
 import { IOSLineItem } from '../components';
-import { CardView, Header, Icon, Touchable } from '../common';
+import { Header, Searchbar, Touchable } from '../common';
 
 const Style = {
     loadingContainer: {
@@ -15,24 +15,6 @@ const Style = {
     loadingIndicator: {
         alignSelf: 'center',
         margin: 10
-    },
-    searchbar: {
-        borderRadius: 4,
-        paddingHorizontal: 8,
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    searchIcon: {
-        flex: 1,
-        color: '#999999',
-        size: 18
-    },
-    searchBox: {
-        height: 32,
-        flex: 8,
-        marginLeft: 8,
-        fontSize: 16
     },
     rowHeader: {
         backgroundColor: '#E9E9E9',
@@ -53,44 +35,25 @@ class Search extends React.Component {
         this.props.loadLines();
     }
 
-    get dataSource() {
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.id !== r2.id });
-        return ds.cloneWithRows(this.props.lines);
-    }
-
     onPressLine(line) {
         this.props.selectLine(line);
         this.props.navigator.push('map');
+    }
+
+    get dataSource() {
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.id !== r2.id });
+        return ds.cloneWithRows(this.props.lines);
     }
 
     renderHeader() {
         return (
             <Header>
                 <Header.Custom>
-                    <CardView style={Style.searchbar}>
-                        <Icon
-                            name="search"
-                            style={Style.searchIcon}
-                            size={Style.searchIcon.size}
-                            color={Style.searchIcon.color}
-                        />
-                        <TextInput
-                            style={Style.searchBox}
-                            onChangeText={text => this.setState({ text })}
-                            value={this.state.text}
-                            placeholder="Digite o nome da linha"
-                            autoCorrect={false}
-                            autoFocus
-                        />
-                        <Touchable onPress={() => this.setState({ text: '' })}>
-                            <Icon
-                                name="close-circle"
-                                style={Style.searchIcon}
-                                size={Style.searchIcon.size}
-                                color={Style.searchIcon.color}
-                            />
-                        </Touchable>
-                    </CardView>
+                    <Searchbar
+                        onChangeText={text => this.setState({ text })}
+                        placeholder="Digite o nome da linha"
+                        autoFocus
+                    />
                 </Header.Custom>
             </Header>
         );
