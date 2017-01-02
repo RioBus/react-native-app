@@ -1,15 +1,17 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { CardView, Header } from '../common';
+import { CardView, Header, Searchbar } from '../common';
 
 const Style = {
     card: {
+        marginVertical: 10,
         padding: 10
     },
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        padding: 10
     },
     welcome: {
         fontSize: 20,
@@ -20,24 +22,29 @@ const Style = {
 
 export default class Second extends React.Component {
 
-    onPressLeftButton() {
-        this.props.navigator.pop();
+    state = { text: '' };
+
+    onChangeText(text) {
+        this.setState({ text });
     }
 
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <Header>
-                    <Header.Custom style={{ justifyContent: 'space-between' }}>
-                        <Text onPress={() => this.onPressLeftButton()}>Back</Text>
-                        <Text>Second page</Text>
+                    <Header.Custom>
+                        <Searchbar
+                            onChangeText={this.onChangeText.bind(this)}
+                            placeholder="Text your search here"
+                            autoFocus
+                        />
                     </Header.Custom>
                 </Header>
             
                 <View style={Style.container}>
                     <CardView style={Style.card}>
                         <Text style={Style.welcome}>
-                            This page has a custom header and is presented only to Android.
+                            You typed: {this.state.text}
                         </Text>
                     </CardView>
                 </View>
