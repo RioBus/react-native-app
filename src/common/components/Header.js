@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableHighlight, Platform } from 'react-native';
+import { View, Text, Platform } from 'react-native';
+import Touchable from './Touchable';
 import Theme from '../../theme';
 
 const Style = {
@@ -72,27 +73,23 @@ export default class Header extends React.Component {
 
     static RightButton(props) {
         return (
-            <TouchableHighlight
+            <Touchable
                 style={Style.toolbarButton}
                 onPress={props.onPress}
-                activeOpacity={0.4}
-                underlayColor={Style.toolbar.backgroundColor}
             >
                 <View>{props.children}</View>
-            </TouchableHighlight>
+            </Touchable>
         );
     }
 
     static LeftButton(props) {
         return (
-            <TouchableHighlight
+            <Touchable
                 style={Style.toolbarButton}
                 onPress={props.onPress}
-                activeOpacity={0.4}
-                underlayColor={Style.toolbar.backgroundColor}
             >
                 <View>{props.children}</View>
-            </TouchableHighlight>
+            </Touchable>
         );
     }
 

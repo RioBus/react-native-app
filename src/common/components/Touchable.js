@@ -6,6 +6,7 @@ export default props => (
         activeOpacity={0.5}
         underlayColor="#00000000"
         onPress={props.onPress}
+        style={{ ...props.style }}
     >
         <View>
             {props.children}
