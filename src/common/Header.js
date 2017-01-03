@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Platform } from 'react-native';
-import Touchable from './Touchable';
+import { Touchable } from './index';
 import Theme from '../theme';
 
 const Style = {
