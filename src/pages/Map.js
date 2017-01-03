@@ -19,8 +19,9 @@ class Map extends React.Component {
     state = { line: {} };
 
     componentWillMount() {
-        this.setState({ line: this.props.args.line });
-        this.props.loadBuses(this.state.line.line);
+        const { line } = this.props.args;
+        this.setState({ line });
+        this.props.loadBuses(line.line);
     }
 
     onPressBackButton() {
