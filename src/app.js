@@ -37,7 +37,7 @@ export default class App extends React.Component {
                         initialRoute={{}}
                         renderScene={this.renderScene}
                         configureScene={() => (Platform.OS === 'ios') ?
-                            Navigator.SceneConfigs.HorizontalSwipeJump :
+                            Navigator.SceneConfigs.PushFromRight :
                             Navigator.SceneConfigs.FloatFromBottomAndroid
                         }
                     />
