@@ -2,7 +2,7 @@ import React from 'react';
 import { ListView, View, ActivityIndicator, DrawerLayoutAndroid } from 'react-native';
 import { connect } from 'react-redux';
 
-import { loadLines, selectLine } from '../actions';
+import { loadLines } from '../actions';
 import { AndroidLineItem } from '../components';
 import { Header, Icon, Touchable } from '../common';
 import Drawer from './Drawer';

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import { Header, Icon } from '../common';
-import { getSelectedLine, unselectLine, loadBuses } from '../actions';
+import { loadBuses } from '../actions';
 
 const Style = {
     mapContainer: {

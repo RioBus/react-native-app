@@ -2,7 +2,7 @@ import React from 'react';
 import { ListView, View, ActivityIndicator, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import { loadLines, selectLine } from '../actions';
+import { loadLines } from '../actions';
 import { IOSLineItem } from '../components';
 import { Header, Searchbar, Touchable } from '../common';
 
