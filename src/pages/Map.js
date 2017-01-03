@@ -16,26 +16,19 @@ const Style = {
 
 class Map extends React.Component {
 
+    state = { line: {} };
+
     componentWillMount() {
-        this.props.getSelectedLine();
-    }
-
-    componentDidUpdate() {
-        if (!this.props.selectedLine.line ||
-            (this.props.selectedLine.line && this.props.buses.length > 0
-                && this.props.buses[0].line === this.props.selectedLine.line)) return;
-
-        this.props.loadBuses(this.props.selectedLine.line);
+        this.setState({ line: this.props.args.line });
+        this.props.loadBuses(this.state.line.line);
     }
 
     onPressBackButton() {
-        this.props.unselectLine();
         this.props.navigator.pop();
     }
 
     get Title() {
-        const { selectedLine } = this.props;
-        return (selectedLine.line) ? selectedLine.line : '';
+        return this.state.line.line;
     }
 
     renderHeader() {
@@ -61,7 +54,7 @@ class Map extends React.Component {
     }
 
     renderMarkers() {
-        if (!this.Title || this.props.buses.length === 0) return;
+        if (this.props.buses.length === 0) return;
         return this.props.buses.map(this.renderMarker);
     }
 
@@ -99,15 +92,12 @@ class Map extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        unselectLine: () => dispatch(unselectLine()),
-        getSelectedLine: (line) => dispatch(getSelectedLine(line)),
         loadBuses: (query) => dispatch(loadBuses(query))
     };
 }
 
 function mapStateToProps(state) {
     return {
-        selectedLine: state.lines.selectedLine,
         buses: state.buses.all
     };
 }

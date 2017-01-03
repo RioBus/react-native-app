@@ -16,12 +16,11 @@ class Search extends React.Component {
     }
 
     onPressMenuButton() {
-        this.drawer.openDrawer(0);
+        this.drawer.openDrawer();
     }
 
     onPressLine(line) {
-        this.props.selectLine(line);
-        this.props.navigator.push('map');
+        this.props.navigator.push({ id: 'map', args: { line } });
     }
 
     get style() {
@@ -105,7 +104,6 @@ class Search extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        selectLine: (line) => dispatch(selectLine(line)),
         loadLines: () => dispatch(loadLines())
     };
 }

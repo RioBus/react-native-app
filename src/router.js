@@ -10,6 +10,6 @@ export default (route, os, navigator) => {
             <AndroidSearch navigator={navigator} /> : <IOSSearch navigator={navigator} />;
 
         case 'map':
-            return <Map navigator={navigator} />;
+            return <Map navigator={navigator} args={route.args} />;
     }
 };

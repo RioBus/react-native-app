@@ -3,13 +3,9 @@ import { AsyncStorage } from 'react-native';
 
 export const DOWNLOAD_LINES = 'DOWNLOAD_LINES';
 export const LOAD_LINES = 'LOAD_LINES';
-export const SELECT_LINE = 'SELECT_LINE';
-export const UNSELECT_LINE = 'UNSELECT_LINE';
-export const SELECTED_LINE = 'SELECTED_LINE';
 
 const API_URL = 'http://rest.riob.us';
 const DB_KEY = 'line';
-const SELECTED_LINE_KEY = `${DB_KEY}:selected`;
 const ALL_LINES_KEY = `${DB_KEY}:all`;
 
 function downloadLines() {
@@ -35,33 +31,6 @@ export function loadLines() {
                     dispatch({ type: LOAD_LINES, payload: newLines });
                 });
             });
-        });
-    };
-}
-
-export function selectLine(line) {
-    return dispatch => {
-        AsyncStorage.setItem(SELECTED_LINE_KEY, JSON.stringify(line), error => {
-            if (error) console.warn(error);
-            dispatch({ type: SELECT_LINE });
-        });
-    };
-}
-
-export function getSelectedLine() {
-    return dispatch => {
-        AsyncStorage.getItem(SELECTED_LINE_KEY, (error, response) => {
-            if (error) console.warn(error);
-            dispatch({ type: SELECTED_LINE, payload: JSON.parse(response) });
-        });
-    };
-}
-
-export function unselectLine() {
-    return dispatch => {
-        AsyncStorage.removeItem(SELECTED_LINE_KEY, error => {
-            if (error) console.warn(error);
-            dispatch({ type: UNSELECT_LINE });
         });
     };
 }

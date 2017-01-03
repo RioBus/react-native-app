@@ -36,8 +36,7 @@ class Search extends React.Component {
     }
 
     onPressLine(line) {
-        this.props.selectLine(line);
-        this.props.navigator.push('map');
+        this.props.navigator.push({ id: 'map', args: { line } });
     }
 
     get dataSource() {
@@ -118,7 +117,6 @@ class Search extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        selectLine: (line) => dispatch(selectLine(line)),
         loadLines: () => dispatch(loadLines())
     };
 }
