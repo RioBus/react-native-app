@@ -1,8 +1,8 @@
 import React from 'react';
 import { AndroidSearch, IOSSearch, Map } from './pages';
 
-export default (routeId, os, navigator) => {
-    switch (routeId) {
+export default (route, os, navigator) => {
+    switch (route.id) {
 
         default:
         case 'search':

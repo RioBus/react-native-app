@@ -37,7 +37,7 @@ export default class App extends React.Component {
                         initialRoute={{}}
                         renderScene={this.renderScene}
                         configureScene={() => (Platform.OS === 'ios') ?
-                            Navigator.SceneConfigs.PushFromRight :
+                            Navigator.SceneConfigs.HorizontalSwipeJump :
                             Navigator.SceneConfigs.FloatFromBottomAndroid
                         }
                     />
@@ -45,5 +45,4 @@ export default class App extends React.Component {
             </Provider>
         );
     }
-
 }

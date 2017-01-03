@@ -1,7 +1,7 @@
-import CardView from './CardView';
-import Header from './Header';
-import Icon from './Icon';
-import Searchbar from './Searchbar';
-import Touchable from './Touchable';
+import CardView from './cardView';
+import Header from './header';
+import Icon from './icon';
+import Searchbar from './searchbar';
+import Touchable from './touchable';
 
 export { CardView, Header, Icon, Searchbar, Touchable };

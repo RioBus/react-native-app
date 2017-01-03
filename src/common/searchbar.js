@@ -1,8 +1,6 @@
 import React from 'react';
 import { Platform, TextInput } from 'react-native';
-import CardView from './CardView';
-import Icon from './Icon';
-import Touchable from './Touchable';
+import { CardView, Icon, Touchable } from './index';
 
 const Style = {
     searchBar: {
