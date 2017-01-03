@@ -43,10 +43,9 @@ class Search extends React.Component {
         let lines = this.props.lines;
         const text = this.state.text;
         if (this.state.text.length > 0) {
-            lines = lines.filter(
-                line => 
-                    line.line.toLowerCase().indexOf(text.toLowerCase()) > -1
-                    || line.description.toLowerCase().indexOf(text.toLowerCase()) > -1
+            lines = lines.filter(({ line, description }) => 
+                line.toLowerCase().indexOf(text.toLowerCase()) > -1
+                || description.toLowerCase().indexOf(text.toLowerCase()) > -1
             );
         }
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.id !== r2.id });
