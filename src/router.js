@@ -1,15 +1,16 @@
 import React from 'react';
 import { Home, IOSSecond, AndroidSecond } from './pages';
 
-export default (routeId, os, navigator) => {
-    switch (routeId) {
+export default (route, os, navigator) => {
+    switch (route.id) {
 
         default:
         case 'home':
-            return <Home navigator={navigator} />;
+            return <Home navigator={navigator} args={route.args} />;
 
         case 'second':
             return (os === 'android') ?
-                <AndroidSecond navigator={navigator} /> : <IOSSecond navigator={navigator} />;
+                <AndroidSecond navigator={navigator} args={route.args} />
+                : <IOSSecond navigator={navigator} args={route.args} />;
     }
 };

@@ -24,6 +24,10 @@ export default class Second extends React.Component {
 
     state = { text: '' };
 
+    componentWillMount() {
+        this.setState({ text: this.props.args.foo });
+    }
+
     onChangeText(text) {
         this.setState({ text });
     }
@@ -44,7 +48,7 @@ export default class Second extends React.Component {
                 <View style={Style.container}>
                     <CardView style={Style.card}>
                         <Text style={Style.welcome}>
-                            You typed: {this.state.text}
+                            You typed {this.state.text}
                         </Text>
                     </CardView>
                 </View>

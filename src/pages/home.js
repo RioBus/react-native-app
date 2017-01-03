@@ -27,7 +27,7 @@ const Style = {
 export default class Home extends React.Component {
 
     onPressRightButton() {
-        this.props.navigator.push('second');
+        this.props.navigator.push({ id: 'second', args: { foo: 'nothing yet' } });
     }
 
     render() {
