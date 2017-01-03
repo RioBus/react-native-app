@@ -78,7 +78,7 @@ class Search extends React.Component {
                 dataSource={this.dataSource}
                 renderRow={this.renderRow.bind(this)}
                 initialListSize={this.props.lines.length}
-                pageSize={10}
+                pageSize={this.props.lines.length}
             />
         );
     }
